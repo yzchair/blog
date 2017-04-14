@@ -19,8 +19,8 @@ import cap.service.impl.ArticleServiceImpl;
 import cap.service.impl.CategoryServcieImpl;
 import cap.service.impl.SysCategoryServiceImpl;
 import cap.util.PageControl;
-
-
+//æ”¾åˆ°æ–°çš„åˆ†æ”¯é‡Œ
+ 
 @WebServlet("/article")
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,9 +47,9 @@ public class ArticleServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		if(action.equals("add")){
-			int userId = Integer.parseInt(request.getParameter("userId"));	//¸ù¾ÝuserId²éÕÒÓÃ»§µÄ¸öÈË·ÖÀà
+			int userId = Integer.parseInt(request.getParameter("userId"));	//ï¿½ï¿½ï¿½ï¿½userIdï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ä¸ï¿½ï¿½Ë·ï¿½ï¿½ï¿½
 			List<Category> cgList = cgService.getByUserId(userId);
-			List<SysCategory> scgList = scService.getAllSysCategory();			//»ñÈ¡ËùÓÐÏµÍ³·ÖÀà			
+			List<SysCategory> scgList = scService.getAllSysCategory();			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½			
 			request.setAttribute("cgList", cgList);
 			request.setAttribute("scgList", scgList);
 			request.getRequestDispatcher("AddArtical.jsp").forward(request, response);
@@ -63,10 +63,10 @@ public class ArticleServlet extends HttpServlet {
 			String content = request.getParameter("content");
 			int res = artService.insertArtical(title, userId, scgId, cgId, content, summary);
 			
-			if (res > 0) {	//Ìí¼ÓÐÂÎÄÕÂ³É¹¦
-				request.getSession().setAttribute("succMsg", "·¢²¼ÎÄÕÂ³É¹¦£¡");			
+			if (res > 0) {	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â³É¹ï¿½
+				request.getSession().setAttribute("succMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â³É¹ï¿½ï¿½ï¿½");			
 			} else {
-				request.getSession().setAttribute("errorMsg", "·¢²¼ÎÄÕÂÊ§°Ü");				
+				request.getSession().setAttribute("errorMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");				
 			}
 			
 			response.sendRedirect("article?action=manage&userId="+userId);
@@ -81,7 +81,7 @@ public class ArticleServlet extends HttpServlet {
 		}else if(action.equals("manage")){
 			 
 			int userId = Integer.parseInt(request.getParameter("userId"));
-			//Ìí¼ÓÓÃÓÚ·ÖÒ³
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½Ò³
 			String curPageStr = request.getParameter("curPage");
 			PageControl pc=artService.getByPageUserId(curPageStr, userId);
 			request.setAttribute("curPage", pc.getCurPage());
@@ -95,10 +95,10 @@ public class ArticleServlet extends HttpServlet {
 			int artId = Integer.parseInt(request.getParameter("artId"));
 			int userId = Integer.parseInt(request.getParameter("userId"));
 			int res = artService.deleteArtical(artId);			
-			if (res > 0) {	//É¾³ý³É¹¦
-				request.getSession().setAttribute("deleSuccMsg", "É¾³ý³É¹¦£¡");
+			if (res > 0) {	//É¾ï¿½ï¿½ï¿½É¹ï¿½
+				request.getSession().setAttribute("deleSuccMsg", "É¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 			} else {
-				request.getSession().setAttribute("deleErrorMsg", "É¾³ýÊ§°Ü£¡");
+				request.getSession().setAttribute("deleErrorMsg", "É¾ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 			}			
 			response.sendRedirect("article?action=manage&userId="+userId);
 		}else if(action.equals("saveupdate")){
@@ -112,10 +112,10 @@ public class ArticleServlet extends HttpServlet {
 			String summary = (String)request.getParameter("summary");
 			int res = artService.UpdateArtical(artId, title, userId, scgId, cgId, content, summary);
 			
-			if (res > 0) {	//¸üÐÂ³É¹¦
-				request.getSession().setAttribute("succMsg", "ÐÞ¸ÄÎÄÕÂ³É¹¦£¡");
+			if (res > 0) {	//ï¿½ï¿½ï¿½Â³É¹ï¿½
+				request.getSession().setAttribute("succMsg", "ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Â³É¹ï¿½ï¿½ï¿½");
 			} else {
-				request.getSession().setAttribute("errorMsg", "ÐÞ¸ÄÎÄÕÂÊ§°Ü");
+				request.getSession().setAttribute("errorMsg", "ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			}
 			
 			response.sendRedirect("article?action=update&artId="+artId);
