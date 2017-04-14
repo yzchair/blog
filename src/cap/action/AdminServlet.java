@@ -30,8 +30,8 @@ import cap.service.impl.ProfileServiceImpl;
 import cap.service.impl.SysCategoryServiceImpl;
 import cap.service.impl.UserServiceImpl;
 import cap.util.PageControl;
-//ÎÒÒª¿´¿´
-
+//ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+//test
 @WebServlet("/admin.html")
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -72,7 +72,7 @@ public class AdminServlet extends HttpServlet {
 			Admin admin = adminService.login(userName, passWord);
 			
 			if (admin == null) {
-				request.getSession().setAttribute("msg", "ÓÃ»§Ãû»òÃÜÂë²»ÕýÈ·£¡");
+				request.getSession().setAttribute("msg", "ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½È·ï¿½ï¿½");
 				response.sendRedirect("AdminLogin.jsp");
 			} else {
 				request.getSession().setAttribute("admin", admin);
@@ -80,19 +80,19 @@ public class AdminServlet extends HttpServlet {
 			}
 			
 		}else if(action.equals("logout")){
-			HttpSession session = request.getSession(false);    //·ÀÖ¹´´½¨Session
+			HttpSession session = request.getSession(false);    //ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Session
 			
 			if (null != session) {
 				session.removeAttribute("admin");
 			}
 			
-			request.getSession().setAttribute("logoutMsg", "ÍË³ö³É¹¦£¡");
+			request.getSession().setAttribute("logoutMsg", "ï¿½Ë³ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 			response.sendRedirect("AdminLogin.jsp");
 			
 		}else if(action.equals("index")){			
-			List<Article> artList = artService.getAllArtical(); //»ñÈ¡ËùÓÐÎÄÕÂ		
-			List<Comment> cmtList = cmtService.getAll(); //»ñÈ¡ËùÓÐÆÀÂÛ	
-			List<User> uList = userService.getAllUser(); //»ñÈ¡ËùÓÐÓÃ»§
+			List<Article> artList = artService.getAllArtical(); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½		
+			List<Comment> cmtList = cmtService.getAll(); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
+			List<User> uList = userService.getAllUser(); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 			Counter cnt = cntService.getCounter();
 			request.setAttribute("artList", artList);
 			request.setAttribute("cmtList", cmtList);
@@ -101,7 +101,7 @@ public class AdminServlet extends HttpServlet {
 			request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 		}	
 		else if(action.equals("useradmin")){			
-			//·ÖÒ³
+			//ï¿½ï¿½Ò³
 			String curPageStr = request.getParameter("curPage");
 			PageControl pc=userService.getUserOfPage(curPageStr);
 			request.setAttribute("curPage", pc.getCurPage());
@@ -120,10 +120,10 @@ public class AdminServlet extends HttpServlet {
 			int uId = Integer.parseInt(request.getParameter("uId"));
 			int res = userService.deleteUser(uId);
 			
-			if (res > 0) {	//É¾³ý³É¹¦
-				request.getSession().setAttribute("succDeleMsg", "½ûÓÃÕË»§³É¹¦£¡");
-			} else {     //É¾³ýÊ§°Ü
-				request.getSession().setAttribute("errorDeleMsg", "½ûÓÃÕË»§Ê§°Ü£¡");
+			if (res > 0) {	//É¾ï¿½ï¿½ï¿½É¹ï¿½
+				request.getSession().setAttribute("succDeleMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
+			} else {     //É¾ï¿½ï¿½Ê§ï¿½ï¿½
+				request.getSession().setAttribute("errorDeleMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½Ê§ï¿½Ü£ï¿½");
 			}
 			
 			response.sendRedirect("admin.html?action=useradmin");
@@ -132,10 +132,10 @@ public class AdminServlet extends HttpServlet {
 			int uId = Integer.parseInt(request.getParameter("uId"));
 			int res = userService.activeUser(uId);
 			
-			if (res > 0) {	//¼¤»î³É¹¦
-				request.getSession().setAttribute("succActMsg", "¼¤»îÕË»§³É¹¦£¡");
-			} else {     //¼¤»îÊ§°Ü
-				request.getSession().setAttribute("errorActMsg", "¼¤»îÕË»§Ê§°Ü£¡");
+			if (res > 0) {	//ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+				request.getSession().setAttribute("succActMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
+			} else {     //ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+				request.getSession().setAttribute("errorActMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½Ê§ï¿½Ü£ï¿½");
 			}			
 			response.sendRedirect("admin.html?action=useradmin");
 			
@@ -153,10 +153,10 @@ public class AdminServlet extends HttpServlet {
 			int artId = Integer.parseInt(request.getParameter("artId"));
 			int res = artService.deleteArtical(artId);
 			
-			if (res > 0) {	//É¾³ý³É¹¦
-				request.getSession().setAttribute("deleSuccMsg", "É¾³ý³É¹¦£¡");
+			if (res > 0) {	//É¾ï¿½ï¿½ï¿½É¹ï¿½
+				request.getSession().setAttribute("deleSuccMsg", "É¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 			} else {
-				request.getSession().setAttribute("deleErrorMsg", "É¾³ýÊ§°Ü£¡");
+				request.getSession().setAttribute("deleErrorMsg", "É¾ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 			}
 			
 			response.sendRedirect("admin.html?action=SysArticalAdmin");
@@ -185,17 +185,17 @@ public class AdminServlet extends HttpServlet {
 			SysCategory scg = scService.getByName(scgName);
 			
 			if ((null != scg) && (scgId != scg.getId())) {
-				request.getSession().setAttribute("scgExist", "¸Ã·ÖÀàÃûÒÑ´æÔÚ£¬ÇëÖØÐÂÊäÈë·ÖÀàÃû£¡");
+				request.getSession().setAttribute("scgExist", "ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				response.sendRedirect("EditSysCategory.html?scgId="+scgId);
 				
-			} else {			//ÔÊÐí¸üÐÂ¸Ã·ÖÀàÃû
+			} else {			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½
 				int res = scService.updateSysCategory(scgId, scgName);
 				
-				if (res > 0) {	//¸üÐÂ³É¹¦
-					request.getSession().setAttribute("succUpdateScg", "¸üÐÂ·ÖÀà³É¹¦£¡");
+				if (res > 0) {	//ï¿½ï¿½ï¿½Â³É¹ï¿½
+					request.getSession().setAttribute("succUpdateScg", "ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 					response.sendRedirect("admin.html?action=SysCategoryAdmin");
 				} else {
-					request.getSession().setAttribute("errorUpdateScg", "¸üÐÂ·ÖÀàÊ§°Ü£¡");
+					request.getSession().setAttribute("errorUpdateScg", "ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 					response.sendRedirect("admin.html?action=SysCategoryAdmin");
 				}
 			}
@@ -203,17 +203,17 @@ public class AdminServlet extends HttpServlet {
 			String scgName = request.getParameter("scgName");
 			SysCategory scg = scService.getByName(scgName);
 			
-			if (null != scg) {    //ÌáÊ¾¸Ã·ÖÀàÒÑ´æÔÚ
-				request.getSession().setAttribute("scgExist", "¸Ã·ÖÀàÃûÒÑ´æÔÚ£¬ÇëÖØÐÂÊäÈë·ÖÀàÃû£¡");
+			if (null != scg) {    //ï¿½ï¿½Ê¾ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
+				request.getSession().setAttribute("scgExist", "ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				response.sendRedirect("admin/AddSysCategory.jsp");
 				
 			} else {
 				int res = scService.insertSysCategory(scgName);
 				
-				if (res > 0) {	  //Ìí¼Ó·ÖÀà³É¹¦
-					request.getSession().setAttribute("succAddScg", "Ìí¼Ó·ÖÀà³É¹¦£¡");
-				} else {		  //Ìí¼Ó·ÖÀàÊ§°Ü
-					request.getSession().setAttribute("errorAddScg", "Ìí¼Ó·ÖÀàÊ§°Ü£¡");
+				if (res > 0) {	  //ï¿½ï¿½Ó·ï¿½ï¿½ï¿½É¹ï¿½
+					request.getSession().setAttribute("succAddScg", "ï¿½ï¿½Ó·ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
+				} else {		  //ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+					request.getSession().setAttribute("errorAddScg", "ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 				}
 				
 				response.sendRedirect("admin.html?action=SysCategoryAdmin");
@@ -224,9 +224,9 @@ public class AdminServlet extends HttpServlet {
 			int res = scService.deleteSysCategory(scgId);
 			
 			if (res > 0) {
-				request.getSession().setAttribute("succDeleScg", "É¾³ý·ÖÀà³É¹¦£¡");
+				request.getSession().setAttribute("succDeleScg", "É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 			} else {
-				request.getSession().setAttribute("errorDeleScg", "É¾³ý·ÖÀàÊ§°Ü£¡");
+				request.getSession().setAttribute("errorDeleScg", "É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 			}
 			
 			response.sendRedirect("admin.html?action=SysCategoryAdmin");
